@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Tweet
 from .forms import TweetForm
-frmo django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect
 
 # Create your views here.
 def index(request):
@@ -9,7 +9,7 @@ def index(request):
 
 
 def tweet_list(request):
-    tweets = Tweet.objects.all().order_by('_created_at')
+    tweets = Tweet.objects.all().order_by('created_at')
     return render(request, 'tweet_list.html', {'tweets': tweets})
 
 
