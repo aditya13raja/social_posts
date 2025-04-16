@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+    {% block content %}
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="text-center">
+        <h2 class="text-info mb-3">Logged Out</h2>
+        <p class="text-light">
+            You have been successfully logged out.
+            <br />
+            <a href="{% url 'login' %}" class="btn btn-outline-primary mt-3">Login Again</a>
+        </p>
+    </div>
+</div>
+
+{% endblock %}
+

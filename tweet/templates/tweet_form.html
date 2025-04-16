@@ -1,30 +1,31 @@
 {% extends "layout.html" %}
 
 {% block title %}
-Social tweet
+Social Tweet
 {% endblock %}
 
 {% block content %}
 
-<h1 class="text-center mt-4">Welcome to my django project</h1>
+<div class="card bg-dark border-secondary shadow-sm mx-auto" style="max-width: 600px;">
+    <div class="card-body">
+        <h3 class="card-title mb-4">
+            {% if form.instance.pk %}
+            ✏️ Edit Tweet
+            {% else %}
+            📝 Create Tweet
+            {% endif %}
+        </h3>
 
-<h2>
-    {% if form.instance.pk %}
-    Edit Tweet
-    {% else %}
-    Create Tweet
-    {% endif %}
-
-    <form method="post" enctype="multipart/form-data" class="fomr">
-        {% csrf_token %}
-        {{ form.as_p}}
-        <button class="btn btn-warning" type="submit">
-            Submit
-        </button>
-    </form>
-    <a href="{% url 'tweet_list' %}">
-        Back to tweet list
-    </a>
-</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+<div class="d-grid gap-2 mt-3">
+                <button class="btn btn-warning" type="submit">Submit</button>
+                <a href="{% url 'tweet_list' %}" class="btn btn-outline-secondary">⬅️ Back to Tweet List</a>
+            </div>
+        </form>
+    </div>
+</div>
 
 {% endblock %}
+
