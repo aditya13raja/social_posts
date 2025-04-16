@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block title %}
+    {% block title %}
 Social Tweets 
 {% endblock %}
 
@@ -9,36 +9,35 @@ Social Tweets
 <h1 class="text-center mb-5 fw-bold text-info">Welcome to Social Posts</h1>
 
 <div class="d-flex justify-content-end mb-4">
-  <a class="btn btn-outline-primary" href="{% url 'tweet_create' %}">
-    ➕ Create Tweet
-  </a>
+    <a class="btn btn-outline-primary" href="{% url 'tweet_create' %}">
+        ➕ Create Tweet
+    </a>
 </div>
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  {% for tweet in tweets %}
-  <div class="col">
-    <div class="card h-100 bg-dark border-secondary shadow-sm">
-      {% if tweet.photo %}
-      <img src="{{ tweet.photo.url }}" class="card-img-top" alt="Tweet Image" />
-      {% endif %}
-      <div class="card-body">
-        <h5 class="card-title text-info">@{{ tweet.user.username }}</h5>
-        <p class="card-text text-light">{{ tweet.text }}</p>
-      </div>
-      {% if tweet.user == user %}
-      <div class="card-footer d-flex justify-content-between border-secondary">
-        <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-sm btn-outline-primary">Edit</a>
-        <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-sm btn-outline-danger">Delete</a>
-      </div>
-      {% endif %}
+<div class="d-flex flex-wrap gap-4 justify-content-start">
+    {% for tweet in tweets %}
+    <div class="card bg-dark border-secondary shadow-sm" style="width: 18rem;">
+        {% if tweet.photo %}
+        <img src="{{ tweet.photo.url }}" class="card-img-top" alt="Tweet Image" />
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title text-info">@{{ tweet.user.username }}</h5>
+            <p class="card-text text-light">{{ tweet.text }}</p>
+        </div>
+        {% if tweet.user == user %}
+        <div class="card-footer d-flex justify-content-between border-secondary">
+            <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-sm btn-outline-primary">Edit</a>
+            <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-sm btn-outline-danger">Delete</a>
+        </div>
+        {% endif %}
     </div>
-  </div>
-  {% empty %}
-  <div class="col">
-    <p class="text-muted">No tweets yet. Be the first to post!</p>
-  </div>
-  {% endfor %}
+    {% empty %}
+    <div class="col-12">
+        <p class="text-muted">No tweets found for your search.</p>
+    </div>
+    {% endfor %}
 </div>
+
 
 {% endblock %}
 
